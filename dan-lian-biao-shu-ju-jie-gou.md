@@ -1,9 +1,9 @@
-# 单链表数据结构
+# 单链表问题
 
 1. 单链表节点定义
 
 ```text
-export class Node {
+class Node {
     public ele: any;
     public next: null;
 
@@ -27,7 +27,7 @@ export class Node {
 3. 基本操作实现
 
 ```text
-export class LinkedList {
+class LinkedList {
     private head: any;
     private length: number;
 
@@ -184,6 +184,155 @@ export class LinkedList {
         ret.push(cur.ele);
         return ret;
     }
+}
+```
+
+4. 单链表高级操作
+
+4. 1 链表合并
+
+> 将两个升序链表合并为一个新的升序链表并返回，新链表是通过拼接给定的两个链表的所有节点组成的
+
+```text
+const mergeTwoList = (r1, r2) => {
+    if (r1 === null) return r2;
+    if (r2 === null) return r1;
+
+    if (r1.ele <= r2.ele) {
+        // 指针后移
+        r1.next = mergeTwoList(r1.next, r2)
+        return r1
+    } else {
+        r2.next = mergeTwoList(r2.next, r1)
+        return r2
+    }
+}
+```
+
+4. 2 链表环检测
+
+> 给定一个链表，判断链表中是否有环
+
+方法1： 标记法
+
+遍历链表，给已遍历过的节点加标志位
+
+```text
+const hasCycle = (r) => {
+     while (r) {
+         if (r.visited) return true
+         r.visited = true
+         r = r.next;
+     }
+     return false
+}
+```
+
+方法2：\`JSON.stringify\`
+
+\`JSON.stringify\`序列化含有循环引用结构会报错
+
+```text
+const hasCycle = (r) => {
+     try {
+         JSON.stringify(r);
+         return false
+     } catch (e) {
+         return true
+     }
+}
+```
+
+方法3：双指针
+
+快慢指针: 遍历单链表，快指针一次走两步，慢指针一次走一步
+
+如果单链表中存在环，则快慢指针终会指向同一个节点，否则直到快指针指向 null 时，快慢指针都不可能相遇
+
+```text
+const hasCycle = (r) => {
+    if (!r || !r.next) return false
+    let fast = r.next.next, slow = r.next;
+
+    while (fast !== slow) {
+        if (!fast || !fast.next) return false
+        fast = fast.next.next
+        slow = slow.next
+    }
+    return true
+}
+```
+
+4.3 链表中间元素
+
+> 求链表的中间结点，节点个数为偶数2n时返回n+1所在节点
+
+快慢指针: 遍历单链表，快指针一次走两步，慢指针一次走一步
+
+快指针走到尾节点的时候就是满指针走到中间的时候
+
+```text
+const getMiddle = (r) => {
+    if (!r || !r.next) return r;
+    let fast = r, slow = r;
+    while (fast && fast.next) {
+        fast = fast.next.next;
+        slow = slow.next
+    }
+    return slow
+}
+```
+
+4.4 链表反转
+
+方法1： 迭代法\(三指针法\)
+
+使用三个指针prev, cur和next实现
+
+next在遍历链表的时候临时保存cur的下一个节点
+
+prev初始值为null，遍历链表的时候反转cur的指向到prev
+
+prev和cur分别前移
+
+```text
+const reverse = (r) => {
+    if (!r || !r.next) return r;
+    let prev = null, cur = r;
+    while (cur) {
+        // 用于临时存储 cur 后继节点
+        // 否则下一步就会抹掉原来的cur.next
+        let next = cur.next;  // 4
+
+        // 反转 cur 的后继指针
+        cur.next = prev;  // 首个节点的next就变为了null
+
+        // 变更prev、cur
+        prev = cur;  // prev前移
+        cur = next  // cur前移
+    }
+    r = prev;
+    return r;
+}
+```
+
+方法2： 递归
+
+```text
+const reverse = (r) => {
+    const _reverse = function (prev, cur) {
+        if (!cur) return prev  // 前移的时候cur为null就结束了
+        // 临时存储
+        let next = cur.next;
+        // 核心反转
+        cur.next = prev;
+        return _reverse(cur, next)  // prev,cur => cur, next
+    }
+
+    if (!r || !r.next) return r;
+
+    r = _reverse(null, r);
+    return r;
 }
 ```
 

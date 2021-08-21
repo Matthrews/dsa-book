@@ -72,3 +72,7 @@ for (let i = 0; i < n; i++) {
 }
 ```
 
+### 前缀和应用
+
+[参考链接](https://zhuanlan.zhihu.com/p/375675761)
+

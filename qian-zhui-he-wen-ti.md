@@ -92,6 +92,7 @@ for (let i = 0; i < n; i++) {
     for (let j = 1; i + j - 1 < n; j += 2) {
         // console.log('ele', arr.slice(i, i + j))
         // i = 0的时候，preSum[0]是人为补上的
+        // S(i + j) - S(i)是{x(i), x(i + 1), x(i + 2), ..., x(i + j)的和
         res += preSum[i + j] - preSum[i]  
     }
 }

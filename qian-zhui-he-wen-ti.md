@@ -76,3 +76,27 @@ for (let i = 0; i < n; i++) {
 
 [参考链接](https://zhuanlan.zhihu.com/p/375675761)
 
+* 连续子数组求和问题
+
+> 给你一个正整数数组 arr ，请你计算所有可能的奇数长度子数组的和
+
+```text
+let preSum = [arr[0]], res = 0, n = arr.length;
+for (let i = 1; i < n; i++) {
+    preSum[i] = preSum[i - 1] + arr[i]
+}
+preSum.unshift(0)
+console.log('preSum', preSum)
+
+for (let i = 0; i < n; i++) {
+    for (let j = 1; i + j - 1 < n; j += 2) {
+        // console.log('ele', arr.slice(i, i + j))
+        // i = 0的时候，preSum[0]是人为补上的
+        res += preSum[i + j] - preSum[i]  
+    }
+}
+return res;
+```
+
+
+

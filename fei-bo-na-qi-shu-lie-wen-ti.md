@@ -59,13 +59,16 @@ function fib(n) {
 
 4. 使用ES6尾递归优化
 
+> 严格模式下才会起作用
+
 ```javascript
 // n代表序列数，ac1代表上一次序列之和，ac2代表本次序列之和
-function fib(n , ac1 = 1 , ac2 = 1) {
-  if( n <= 1 ) return ac2;
+function fib(n , ac1 = 0 , ac2 = 1) {
+  if( n === 0 ) return ac1;
 
   return fib(n - 1, ac2, ac1 + ac2);
 }
+// fib(5, 0, 1)
 ```
 
 > 参考：[https://es6.ruanyifeng.com/\#docs/function\#%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96](https://es6.ruanyifeng.com/#docs/function#%E5%B0%BE%E8%B0%83%E7%94%A8%E4%BC%98%E5%8C%96)

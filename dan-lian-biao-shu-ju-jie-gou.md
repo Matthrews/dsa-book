@@ -2,7 +2,7 @@
 
 1. 单链表节点定义
 
-```text
+```
 class Node {
     public ele: any;
     public next: null;
@@ -14,19 +14,19 @@ class Node {
 }
 ```
 
-2. 单链表基本操作
+2\. 单链表基本操作
 
-* 插入  \`insert\(ele, pos\)\`  
-* 查询  \`get\(pos\)\`
-* 删除  \`remove\(pos\)\`
-* 获取头节点  \`getHead\(\)\`
-* 获取链表长度  \`getSize\(\)\`
-* 判断链表是否为空  \`isEmpty\(\)\`
-* 获取链表节点数组  \`getList\(\)\`
+* 插入  \`insert(ele, pos)\` &#x20;
+* 查询  \`get(pos)\`
+* 删除  \`remove(pos)\`
+* 获取头节点  \`getHead()\`
+* 获取链表长度  \`getSize()\`
+* 判断链表是否为空  \`isEmpty()\`
+* 获取链表节点数组  \`getList()\`
 
-3. 基本操作实现
+3\. 基本操作实现
 
-```text
+```
 class LinkedList {
     private head: any;
     private length: number;
@@ -187,13 +187,13 @@ class LinkedList {
 }
 ```
 
-4. 单链表高级操作
+4\. 单链表高级操作
 
-4. 1 链表合并
+4\. 1 链表合并
 
 > 将两个升序链表合并为一个新的升序链表并返回，新链表是通过拼接给定的两个链表的所有节点组成的
 
-```text
+```
 const mergeTwoList = (r1, r2) => {
     if (r1 === null) return r2;
     if (r2 === null) return r1;
@@ -209,7 +209,7 @@ const mergeTwoList = (r1, r2) => {
 }
 ```
 
-4. 2 链表环检测
+4\. 2 链表环检测
 
 > 给定一个链表，判断链表中是否有环
 
@@ -217,7 +217,7 @@ const mergeTwoList = (r1, r2) => {
 
 遍历链表，给已遍历过的节点加标志位
 
-```text
+```
 const hasCycle = (r) => {
      while (r) {
          if (r.visited) return true
@@ -232,7 +232,7 @@ const hasCycle = (r) => {
 
 \`JSON.stringify\`序列化含有循环引用结构会报错
 
-```text
+```
 const hasCycle = (r) => {
      try {
          JSON.stringify(r);
@@ -249,7 +249,7 @@ const hasCycle = (r) => {
 
 如果单链表中存在环，则快慢指针终会指向同一个节点，否则直到快指针指向 null 时，快慢指针都不可能相遇
 
-```text
+```
 const hasCycle = (r) => {
     if (!r || !r.next) return false
     let fast = r.next.next, slow = r.next;
@@ -271,7 +271,7 @@ const hasCycle = (r) => {
 
 快指针走到尾节点的时候就是满指针走到中间的时候
 
-```text
+```
 const getMiddle = (r) => {
     if (!r || !r.next) return r;
     let fast = r, slow = r;
@@ -285,7 +285,7 @@ const getMiddle = (r) => {
 
 4.4 链表反转
 
-方法1： 迭代法\(三指针法\)
+方法1： 迭代法(三指针法)
 
 使用三个指针prev, cur和next实现
 
@@ -295,7 +295,7 @@ prev初始值为null，遍历链表的时候反转cur的指向到prev
 
 prev和cur分别前移
 
-```text
+```
 const reverse = (r) => {
     if (!r || !r.next) return r;
     let prev = null, cur = r;
@@ -318,7 +318,7 @@ const reverse = (r) => {
 
 方法2： 递归
 
-```text
+```
 const reverse = (r) => {
     const _reverse = function (prev, cur) {
         if (!cur) return prev  // 前移的时候cur为null就结束了
@@ -338,10 +338,10 @@ const reverse = (r) => {
 
 4.5 链表求和
 
-> 给你两个非空 的链表，表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字。  
->  请你将两个数相加，并以相同形式返回一个表示和的链表。
+> 给你两个非空 的链表，表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字。\
+> &#x20;请你将两个数相加，并以相同形式返回一个表示和的链表。
 
-```text
+```
 const addTwoNumbers = (l1, l2) => {
     let carry = 0;
     let head = null, tail = null;  // 当carry>0时，tail用于表示进位
@@ -377,3 +377,64 @@ const addTwoNumbers = (l1, l2) => {
 }
 ```
 
+4.6 回文链表
+
+> 给你一个单链表的头节点 head ，请你判断该链表是否为回文链表。
+
+方法1：遍历链表将节点值放入数组，然后双指针\
+复杂度：O(n) O(n)
+
+```
+var isPalindrome = function (head) {
+  const arr = [];
+    while (head) {
+      arr.push(head.val);
+      head = head.next;
+    }
+    let i = 0,
+      len = arr.length,
+      j = len - 1;
+    for (i, j; i < j; i++, j--) {
+      if (arr[i] !== arr[j]) {
+        return false;
+      }
+    }
+    return true;
+};
+```
+
+方法2：前半部分指针反转一下，然后再判断回文\
+复杂度：O(n) O(1)
+
+```
+var isPalindrome = function (head) {
+  let slow = head,
+    fast = head;
+  let prev = null,
+    next = null;
+
+  while (fast !== null && fast.next !== null) {
+    fast = fast.next.next;
+    next = slow.next;
+    // slow 边走边逆序
+    slow.next = prev;
+    prev = slow;
+    slow = next;
+  }
+
+  if (fast !== null) {
+    // 链表长度为奇数
+    slow = slow.next;
+  }
+
+  while (prev !== null && slow !== null) {
+    if (prev.val !== slow.val) {
+      return false;
+    }
+
+    prev = prev.next;
+    slow = slow.next;
+  }
+  return true;
+};
+```

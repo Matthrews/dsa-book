@@ -439,3 +439,48 @@ var isPalindrome = function (head) {
   return true;
 };
 ```
+
+4.7 链表排序
+
+> 给你链表的头结点 head ，请将其按 升序 排列并返回 排序后的链表 。
+
+```
+var sortList = function (head) {
+  // 自顶向下归并排序
+  // 1. 找到链表的中点，以中点为分界，将链表拆分成两个子链表。
+  //      寻找链表的中点可以使用快慢指针的做法，快指针每次移动 22 步，慢指针每次移动 11 步，当快指针到达链表末尾时，慢指针指向的链表节点即为链表的中点
+  // 2. 对两个子链表分别排序。
+  // 3. 将两个排序后的子链表合并，得到完整的排序后的链表
+
+  return toSortList(head, null);
+};
+var toSortList = function (head, tail) {
+  if (!head || !head.next) {
+    return head;
+  }
+
+  if (head.next === tail) {
+    head.next = null;
+    return head;
+  }
+  //   let slow = head.next;
+  //   let fast = head.next.next;
+  //   while (fast && fast.next && fast !== tail) {
+  //     slow = slow.next;
+  //     fast = fast.next.next;
+  //   }
+  let slow = head,
+    fast = head;
+  while (fast !== tail) {
+    slow = slow.next;
+    fast = fast.next;
+    if (fast !== tail) {
+      fast = fast.next;
+    }
+  }
+
+  const mid = slow;
+  return mergeTwoList(toSortList(head, mid), toSortList(mid, tail));
+};
+
+```

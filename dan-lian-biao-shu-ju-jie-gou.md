@@ -259,6 +259,7 @@ const hasCycle = (r) => {
         fast = fast.next.next
         slow = slow.next
     }
+    // 如需找到环入口只需新建一个指针tmp和slow指针同时向前遍历，当两者相等时，入口就是tmp
     return true
 }
 ```

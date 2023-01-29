@@ -14,7 +14,6 @@ function fib(n) {
 
 2\. 使用动态规划实现
 
-````javascript
 ```javascript
 function fib(n) {
   if (Number.isInteger(n) === true) {
@@ -31,8 +30,8 @@ function fib(n) {
     return a[n];
   }
 }
+
 ```
-````
 
 > 时间复杂度为 O(n)，空间复杂度为 O(n)
 

@@ -27,7 +27,6 @@
 
 看到这道题，我知道很小多小伙伴很快就能写出来了
 
-````javascript
 ```javascript
 var majorityElement = function (nums) {
   let middle = nums.length >> 1;
@@ -50,6 +49,5 @@ var majorityElement = function (nums) {
 console.assert(majorityElement([1, 2, 5, 9, 5, 9, 5, 5, 5]) === 5);
 console.assert(majorityElement([3, 2]) === -1);
 console.assert(majorityElement([2, 2, 1, 1, 1, 2, 2]) === 2);
-
 ```
-````
+

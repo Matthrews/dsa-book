@@ -27,7 +27,7 @@
 
 看到这道题，我知道很小多小伙伴很快就能写出来了
 
-````
+````javascript
 ```javascript
 var majorityElement = function (nums) {
   let middle = nums.length >> 1;

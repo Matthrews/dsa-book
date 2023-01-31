@@ -25,3 +25,31 @@
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 ```
 
+看到这道题，我知道很小多小伙伴很快就能写出来了
+
+````
+```javascript
+var majorityElement = function (nums) {
+  let middle = nums.length >> 1;
+  let map = new Map();
+
+  for (let i = nums.length - 1; i >= 0; i--) {
+    if (!map.has(nums[i])) {
+      map.set(nums[i], 1);
+    } else {
+      map.set(nums[i], map.get(nums[i]) + 1);
+    }
+  }
+
+  for (const [key, value] of map) {
+    if (value > middle) return key;
+  }
+  return -1;
+};
+
+console.assert(majorityElement([1, 2, 5, 9, 5, 9, 5, 5, 5]) === 5);
+console.assert(majorityElement([3, 2]) === -1);
+console.assert(majorityElement([2, 2, 1, 1, 1, 2, 2]) === 2);
+
+```
+````

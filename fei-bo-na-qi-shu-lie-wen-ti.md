@@ -39,21 +39,22 @@ function fib(n) {
 
 ```javascript
 function fib(n) {
-			if (Number.isInteger(n) === true) {
-				let a,b,c
-				if (n <= 0) {
-					return -1
-				} else {
-					a = b = 1
-					for (let i = 3; i < n + 1; i++) {
-						c = a + b
-						a = b
-						b = c
-					}
-				}
-				return c
-			}
-		}
+  if (Number.isInteger(n) === true) {
+    let a, b, c;
+    if (n <= 0) {
+      return -1;
+    } else {
+      a = b = 1;
+      for (let i = 3; i < n + 1; i++) {
+        c = a + b;
+        a = b;
+        b = c;
+      }
+    }
+    return c;
+  }
+}
+
 ```
 
 > 时间复杂度为 O(n)，空间复杂度为 O(1)

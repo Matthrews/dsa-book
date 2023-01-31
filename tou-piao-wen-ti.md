@@ -203,3 +203,11 @@ console.assert(majorityElement([2]).includes(2));
 ```
 
 <figure><img src=".gitbook/assets/result.jpg" alt=""><figcaption><p>Console 打印结果</p></figcaption></figure>
+
+```
+归纳总结：
+     如果至多选一个代表，那他的票数至少要超过一半（⌊ 1/2 ⌋）的票数；
+     如果至多选两个代表，那他们的票数至少要超过 ⌊ 1/3 ⌋ 的票数；
+     如果至多选m个代表，那他们的票数至少要超过 ⌊ 1/(m+1) ⌋ 的票数。
+类似场景都可以运用摩尔投票法
+```

@@ -53,3 +53,45 @@ console.assert(majorityElement([3, 2]) === -1);
 console.assert(majorityElement([2, 2, 1, 1, 1, 2, 2]) === 2);
 ```
 
+方法2: 摩尔投票法
+
+```
+时间复杂度：O(n), 空间复杂度：O(1)
+```
+
+```javascript
+var majorityElement = function (nums) {
+  let middle = nums.length >> 1;
+  let candidate,
+    counter = 0;
+
+  for (let i = 0, len = nums.length; i < len; i++) {
+    if (counter === 0) {
+      candidate = nums[i];
+      counter++;
+    } else {
+      if (nums[i] === candidate) {
+        counter++;
+      } else {
+        counter--;
+      }
+    }
+  }
+
+  if (counter) {
+    counter = 0; // 清零用于统计candidate票数
+    for (let i = nums.length - 1; i >= 0; i--) {
+      if (nums[i] === candidate) counter++;
+    }
+    if (counter > middle) {
+      return candidate;
+    }
+  }
+  // console.log('candidate ', candidate, counter);
+  return -1; // 不存在
+};
+
+console.assert(majorityElement([1, 2, 5, 9, 5, 9, 5, 5, 5]) === 5);
+console.assert(majorityElement([3, 2]) === -1);
+console.assert(majorityElement([2, 2, 1, 1, 1, 2, 2]) === 2);
+```

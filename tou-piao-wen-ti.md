@@ -101,7 +101,8 @@ console.assert(majorityElement([2, 2, 1, 1, 1, 2, 2]) === 2);
 [演示网站](https://www.cs.utexas.edu/\~moore/best-ideas/mjrty/index.html)
 
 ```
-As we sweep we maintain a pair consisting of a current candidate and a counter. Initially, the current candidate is unknown and the counter is 0.
+As we sweep we maintain a pair consisting of a current candidate and a counter. 
+Initially, the current candidate is unknown and the counter is 0.
 When we move the pointer forward over an element e:
     If the counter is 0, we set the current candidate to e and we set the counter to 1.
     If the counter is not 0, we increment or decrement the counter according to whether e is the current candidate.

@@ -202,4 +202,4 @@ console.assert(majorityElement([3, 2, 3]).includes(3));
 console.assert(majorityElement([2]).includes(2));
 ```
 
-<figure><img src="https://images.unsplash.com/photo-1672568048472-c706a0efd92e?crop=entropy&#x26;cs=tinysrgb&#x26;fm=jpg&#x26;ixid=MnwxOTcwMjR8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzUxODE4NDY&#x26;ixlib=rb-4.0.3&#x26;q=80" alt="撒打算"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/result.jpg" alt=""><figcaption><p>Console 打印结果</p></figcaption></figure>

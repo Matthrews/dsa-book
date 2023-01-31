@@ -95,3 +95,15 @@ console.assert(majorityElement([1, 2, 5, 9, 5, 9, 5, 5, 5]) === 5);
 console.assert(majorityElement([3, 2]) === -1);
 console.assert(majorityElement([2, 2, 1, 1, 1, 2, 2]) === 2);
 ```
+
+摩尔投票法
+
+```
+As we sweep we maintain a pair consisting of a current candidate and a counter. Initially, the current candidate is unknown and the counter is 0.
+When we move the pointer forward over an element e:
+    If the counter is 0, we set the current candidate to e and we set the counter to 1.
+    If the counter is not 0, we increment or decrement the counter according to whether e is the current candidate.
+When we are done, the current candidate is the majority element, if there is a majority.
+演示网站：https://www.cs.utexas.edu/~moore/best-ideas/mjrty/index.html
+时间复杂度：O(n), 空间复杂度：O(1)
+```
